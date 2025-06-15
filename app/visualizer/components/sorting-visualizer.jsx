@@ -15,15 +15,15 @@ import {
 } from "../lib/sorting-algorithms"
 
 const ALGORITHMS = [
-  { id: "mergeSort", name: "Merge Sort", complexity: "O(n log n)", color: "from-blue-500 to-cyan-500" },
-  { id: "quickSort", name: "Quick Sort", complexity: "O(n log n)", color: "from-purple-500 to-pink-500" },
-  { id: "selectionSort", name: "Selection Sort", complexity: "O(n²)", color: "from-orange-500 to-red-500" },
-  { id: "bubbleSort", name: "Bubble Sort", complexity: "O(n²)", color: "from-green-500 to-emerald-500" },
-  { id: "insertionSort", name: "Insertion Sort", complexity: "O(n²)", color: "from-indigo-500 to-purple-500" },
+  { id: "mergeSort", name: "Merge Sort", complexity: "O(n log n)", color: "bg-zinc-800 hover:bg-zinc-700" },
+  { id: "quickSort", name: "Quick Sort", complexity: "O(n log n)", color: "bg-zinc-800 hover:bg-zinc-700" },
+  { id: "selectionSort", name: "Selection Sort", complexity: "O(n²)", color: "bg-zinc-800 hover:bg-zinc-700" },
+  { id: "bubbleSort", name: "Bubble Sort", complexity: "O(n²)", color: "bg-zinc-800 hover:bg-zinc-700" },
+  { id: "insertionSort", name: "Insertion Sort", complexity: "O(n²)", color: "bg-zinc-800 hover:bg-zinc-700" },
 ]
 
 const COLORS = {
-  primary: "#94a3b8",
+  primary: "#52525b",
   comparing: "#ef4444",
   pivot: "#a855f7",
   current: "#fbbf24",
@@ -48,7 +48,7 @@ export default function SortingVisualizer() {
   const speedRef = useRef(50)
 
   const generateArray = useCallback(() => {
-    const newArray = Array.from({ length: arraySize[0] }, () => Math.floor(Math.random() * 350) + 10)
+    const newArray = Array.from({ length: arraySize[0] }, () => Math.floor(Math.random() * 280) + 10)
     setArray(newArray)
     resetStats()
     resetColors()
@@ -115,7 +115,6 @@ export default function SortingVisualizer() {
     const bar2 = document.querySelector(`.array-bar[data-index="${index2}"]`)
 
     if (bar1 && bar2) {
-      // Scale up and change color
       bar1.style.transition = "all 200ms ease-out"
       bar2.style.transition = "all 200ms ease-out"
       bar1.style.transform = "scale(1.3)"
@@ -127,7 +126,6 @@ export default function SortingVisualizer() {
 
       await sleep(200)
 
-      // Change heights
       bar1.style.transition = "height 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)"
       bar2.style.transition = "height 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)"
       bar1.style.height = `${height1}px`
@@ -135,7 +133,6 @@ export default function SortingVisualizer() {
 
       await sleep(300)
 
-      // Scale back and reset color
       bar1.style.transition = "all 200ms ease-out"
       bar2.style.transition = "all 200ms ease-out"
       bar1.style.transform = "scale(1)"
@@ -306,39 +303,37 @@ export default function SortingVisualizer() {
   }
 
   return (
-    <div className="text-white p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="h-full bg-black text-white p-4 overflow-hidden">
+      <div className="max-w-7xl mx-auto h-full flex flex-col">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-            Sorting Algorithm Visualizer
-          </h2>
-          <p className="text-slate-300 text-lg">Watch sorting algorithms come to life with smooth animations</p>
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold text-white mb-2">Sorting Algorithm Visualizer</h2>
+          <p className="text-zinc-400 text-sm">Watch sorting algorithms come to life with smooth animations</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <Card className="bg-slate-800/50 border-slate-700 p-4 text-center transform transition-all duration-300 hover:scale-105">
-            <div className="text-2xl font-bold text-blue-400 transition-all duration-300">{comparisons}</div>
-            <div className="text-sm text-slate-400">Comparisons</div>
+        <div className="grid grid-cols-4 gap-3 mb-4">
+          <Card className="bg-zinc-900 border-zinc-800 p-3 text-center">
+            <div className="text-lg font-bold text-white">{comparisons}</div>
+            <div className="text-xs text-zinc-400">Comparisons</div>
           </Card>
-          <Card className="bg-slate-800/50 border-slate-700 p-4 text-center transform transition-all duration-300 hover:scale-105">
-            <div className="text-2xl font-bold text-pink-400 transition-all duration-300">{swaps}</div>
-            <div className="text-sm text-slate-400">Swaps</div>
+          <Card className="bg-zinc-900 border-zinc-800 p-3 text-center">
+            <div className="text-lg font-bold text-white">{swaps}</div>
+            <div className="text-xs text-zinc-400">Swaps</div>
           </Card>
-          <Card className="bg-slate-800/50 border-slate-700 p-4 text-center transform transition-all duration-300 hover:scale-105">
-            <div className="text-2xl font-bold text-green-400 transition-all duration-300">{currentStep}</div>
-            <div className="text-sm text-slate-400">Current Step</div>
+          <Card className="bg-zinc-900 border-zinc-800 p-3 text-center">
+            <div className="text-lg font-bold text-white">{currentStep}</div>
+            <div className="text-xs text-zinc-400">Current Step</div>
           </Card>
-          <Card className="bg-slate-800/50 border-slate-700 p-4 text-center transform transition-all duration-300 hover:scale-105">
-            <div className="text-2xl font-bold text-purple-400 transition-all duration-300">{totalSteps}</div>
-            <div className="text-sm text-slate-400">Total Steps</div>
+          <Card className="bg-zinc-900 border-zinc-800 p-3 text-center">
+            <div className="text-lg font-bold text-white">{totalSteps}</div>
+            <div className="text-xs text-zinc-400">Total Steps</div>
           </Card>
         </div>
 
         {/* Visualization */}
-        <Card className="bg-slate-800/30 border-slate-700 p-6 mb-6 transform transition-all duration-300 hover:scale-[1.01]">
-          <div className="flex items-end justify-center h-96 gap-1 overflow-hidden">
+        <Card className="bg-zinc-900 border-zinc-800 p-4 mb-4 flex-1 min-h-0">
+          <div className="flex items-end justify-center h-full gap-1 overflow-hidden">
             {array.map((value, index) => (
               <div
                 key={index}
@@ -346,7 +341,7 @@ export default function SortingVisualizer() {
                 className="array-bar transition-all duration-200 ease-out"
                 style={{
                   height: `${value}px`,
-                  width: `${Math.max(2, 800 / array.length)}px`,
+                  width: `${Math.max(2, 700 / array.length)}px`,
                   backgroundColor: COLORS.primary,
                   minWidth: "2px",
                   borderRadius: "2px 2px 0 0",
@@ -357,13 +352,13 @@ export default function SortingVisualizer() {
         </Card>
 
         {/* Controls */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-3 gap-4 mb-4">
           {/* Array Controls */}
-          <Card className="bg-slate-800/50 border-slate-700 p-6 transform transition-all duration-300 hover:scale-105">
-            <h3 className="text-lg font-semibold mb-4">Array Controls</h3>
-            <div className="space-y-4">
+          <Card className="bg-zinc-900 border-zinc-800 p-4">
+            <h3 className="text-sm font-semibold mb-3 text-white">Array Controls</h3>
+            <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium mb-2">Array Size: {arraySize[0]}</label>
+                <label className="block text-xs font-medium mb-1 text-zinc-300">Size: {arraySize[0]}</label>
                 <Slider
                   value={arraySize}
                   onValueChange={setArraySize}
@@ -371,33 +366,33 @@ export default function SortingVisualizer() {
                   max={100}
                   step={5}
                   disabled={isAnimating}
-                  className="w-full"
+                  className="w-full bg-gray-500"
                 />
               </div>
               <Button
                 onClick={generateArray}
                 disabled={isAnimating}
-                className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 transition-all duration-200 hover:scale-105"
+                className="w-full bg-white text-black hover:bg-zinc-200 text-xs h-8"
               >
-                <Shuffle className="w-4 h-4 mr-2" />
-                Generate New Array
+                <Shuffle className="w-3 h-3 mr-1" />
+                Generate Array
               </Button>
             </div>
           </Card>
 
           {/* Animation Controls */}
-          <Card className="bg-slate-800/50 border-slate-700 p-6 transform transition-all duration-300 hover:scale-105">
-            <h3 className="text-lg font-semibold mb-4">Animation Controls</h3>
-            <div className="space-y-4">
+          <Card className="bg-zinc-900 border-zinc-800 p-4">
+            <h3 className="text-sm font-semibold mb-3 text-white">Animation</h3>
+            <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium mb-2">Speed: {animationSpeed[0]}%</label>
+                <label className="block text-xs font-medium mb-1 text-zinc-300">Speed: {animationSpeed[0]}%</label>
                 <Slider
                   value={animationSpeed}
                   onValueChange={setAnimationSpeed}
                   min={1}
                   max={100}
                   step={1}
-                  className="w-full"
+                  className="w-full bg-gray-500"
                 />
               </div>
               <div className="flex gap-2">
@@ -405,91 +400,54 @@ export default function SortingVisualizer() {
                   onClick={togglePause}
                   disabled={!isAnimating}
                   variant="outline"
-                  className="flex-1 transition-all duration-200 hover:scale-105"
+                  className="flex-1 border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-600 bg-transparent text-xs h-8"
                 >
-                  {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+                  {isPaused ? <Play className="w-3 h-3" /> : <Pause className="w-3 h-3" />}
                 </Button>
-                <Button
-                  onClick={stopAnimation}
-                  disabled={!isAnimating}
-                  variant="outline"
-                  className="flex-1 transition-all duration-200 hover:scale-105"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                </Button>
+                
               </div>
             </div>
           </Card>
 
           {/* Current Algorithm */}
-          <Card className="bg-slate-800/50 border-slate-700 p-6 transform transition-all duration-300 hover:scale-105">
-            <h3 className="text-lg font-semibold mb-4">Current Algorithm</h3>
+          <Card className="bg-zinc-900 border-zinc-800 p-4">
+            <h3 className="text-sm font-semibold mb-3 text-white">Current Algorithm</h3>
             {currentAlgorithm ? (
               <div className="space-y-2">
-                <div className="text-xl font-bold text-blue-400">
+                <div className="text-sm font-bold text-white">
                   {ALGORITHMS.find((alg) => alg.id === currentAlgorithm)?.name}
                 </div>
-                <Badge variant="secondary">{ALGORITHMS.find((alg) => alg.id === currentAlgorithm)?.complexity}</Badge>
-                <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
+                <Badge variant="secondary" className="bg-zinc-800 text-zinc-300 text-xs">
+                  {ALGORITHMS.find((alg) => alg.id === currentAlgorithm)?.complexity}
+                </Badge>
+                <div className="w-full bg-zinc-800 rounded-full h-1 overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300 ease-out"
+                    className="bg-white h-1 rounded-full transition-all duration-300 ease-out"
                     style={{ width: `${(currentStep / totalSteps) * 100}%` }}
                   />
                 </div>
               </div>
             ) : (
-              <div className="text-slate-400">No algorithm running</div>
+              <div className="text-zinc-400 text-xs">No algorithm running</div>
             )}
           </Card>
         </div>
 
         {/* Algorithm Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-5 gap-2">
           {ALGORITHMS.map((algorithm) => (
             <Button
               key={algorithm.id}
               onClick={() => animateSort(algorithm.id)}
               disabled={isAnimating}
-              className={`h-20 flex flex-col items-center justify-center bg-gradient-to-r ${algorithm.color} hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl transform`}
+              className={`h-12 flex flex-col items-center justify-center ${algorithm.color} text-white text-xs`}
             >
-              <div className="font-bold text-lg">{algorithm.name}</div>
-              <div className="text-xs opacity-80">{algorithm.complexity}</div>
+              <div className="font-bold">{algorithm.name}</div>
+              <div className="text-xs opacity-70">{algorithm.complexity}</div>
             </Button>
           ))}
         </div>
-
-        {/* Legend */}
-        <Card className="bg-slate-800/30 border-slate-700 p-6 transform transition-all duration-300 hover:scale-105">
-          <h3 className="text-lg font-semibold mb-4">Color Legend</h3>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.primary }} />
-              <span className="text-sm">Unsorted</span>
-            </div>
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.comparing }} />
-              <span className="text-sm">Comparing</span>
-            </div>
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.pivot }} />
-              <span className="text-sm">Pivot</span>
-            </div>
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.current }} />
-              <span className="text-sm">Current</span>
-            </div>
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.swapping }} />
-              <span className="text-sm">Swapping</span>
-            </div>
-            <div className="flex items-center gap-2 transition-all duration-200 hover:scale-105">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: COLORS.sorted }} />
-              <span className="text-sm">Sorted</span>
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   )
 }
-  
